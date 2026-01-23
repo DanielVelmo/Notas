@@ -1,0 +1,343 @@
+\documentclass[11pt]{article}
+% Paquetes
+\usepackage{amssymb}
+\usepackage{amsmath,lipsum}
+\usepackage[most]{tcolorbox}
+\usepackage{setspace}
+\usepackage{svg}
+\usepackage{ifluatex}
+\usepackage[spanish]{babel}
+\usepackage[shortlabels]{enumitem}
+
+\ifluatex
+  \usepackage{pdftexcmds}
+  \makeatletter
+  \let\pdfstrcmp\pdf@strcmp
+  \let\pdffilemoddate\pdf@filemoddate
+  \makeatother
+\fi
+
+\newcommand{\incsvg}{\includesvg}
+%% Ajustes del documento
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+\setlength{\fboxsep}{1em}
+\renewcommand{\baselinestretch}{1.2} 
+\title{Sistema dinámicos I}
+\author{Basado en las lecturas de João Pedro Morais\\
+    Notas tomadas por Daniel Vélez Moyado}
+\date{Primavera 2026}
+
+\begin{document}
+\maketitle 
+\pagebreak
+\begin{spacing}{0.1}
+\tableofcontents
+\end{spacing}
+\pagebreak
+
+
+
+
+\section{Ecuaciones diferenciales de primer grado}
+La idea principal de esta materia gira alrededor de la idea 
+de resolver ecuaciones diferenciales y analizar distintas propiedades de ellas.
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Definición} Una \textbf{ecuación diferencial} es aquella que involucra una función ($y$),
+sus variables ($x$) y derivadas de dicha función ($y^{(k)}$). Su forma general es
+\begin{equation*}
+   F(x, y, y', y'', ..., y^{(n)}) = 0, \quad y := y(x) \quad y^{(k)} := \frac{d^k y}{dx^k}, \quad k \in \mathbb{N}
+\end{equation*}
+\end{minipage}}
+
+\textbf{[1.1] Ejemplo:} Suponga la siguiente ecuación $y' = -k y$ para $y(x) > 0, \forall x \in \mathbb{R}$. La 
+metodología para resolver estas ecuaciones es pasar todos los terminos de la función de un lado y dejar todo lo demás
+del otro lado de la ecuación, tomando el ejemplo llegaríamos a
+\begin{equation*}
+   \frac{y'}{y} = -k \iff \int \frac{y'}{y} dx = \int -k  dx + c, c \in \mathbb{R}
+\end{equation*}
+Considerando que $y' =  \frac{d y}{ dx} \iff y' dx = dy$
+\begin{equation*}
+   \int \frac{y'}{y} dx = \int -k  dx + c \iff  \int \frac{1}{y} dy = \int -k  dx  \iff \ln|y| = -kx  + c
+\end{equation*}
+Dejar la ecuación de esta manera significa obtener una \textbf{solución implícita} ecuación diferenical, 
+\begin{equation*}
+   \ln|y| = -kx  + c \iff |y| = e^{-kx  + c} \iff y = \pm e^{-kx  + c} \iff y = Ae^{-kx}
+\end{equation*}
+Tal que $A \in \mathbb{R}_{\neq 0}$. La expresión $ y = Ae^{-kx}$ sería la solución explícita de la ecuación diferencial. Sin embargo 
+pese que llegamos a que $A\neq 0$, esto no excluye la posibilidad (de manera general) de que $y(x) = 0$ sea una solución. Para saber si la solución \textbf{trivial} $y(x) = 0$
+es una solución hay que checar las condiciones sobre las cuales se plantea el problema y el desarrollo de toda la ecuación. En este caso tenemos $y >0$ por lo que la solución trivial no forma
+parte del conjunto de soluciones. 
+
+Podemos observar que existen un conjunto de soluciones a la ecuación diferencial, ya determinamos que
+este se verá de la siguiente forma: 
+\begin{equation*}
+   \{ y : y = Ae^{-kx}, A \in \mathbb{R}_{\neq 0}  \}
+\end{equation*}
+Sin embargo, si el problema presenta condiciones iniciales, podemos determianr una solución particular.
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Definición} Una \textbf{solución particular} es aquella solución $y : \mathbb{R} \to \mathbb{R}$
+que satisface $y(x_o) = \alpha, \alpha \in \mathbb{R}$ para alguna $x_0 \in \mathbb{R}$. Se define $y_0 := y(x_0)$
+\end{minipage}}
+
+Retomando el ejemplo \textbf{[1.1]}, si agregamos la condición inicial $(x_0, y_0)$. Si queremos 
+encontrar la solución partiuclar sólo basta resolver $y_0 = A e^{-k x_0}$.
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Teorema} El \textbf{intervalo máximo de existencia}, denotado $I_M$ de una solución
+particular $y$ es el mayor sub-intervalo del dominio de $y$ que:
+\begin{enumerate}[a., topsep=0pt, itemsep=-2px]
+\item $x_0 \in I_M$
+\item $y \in C^1[I_M]$ (La solución es de clase $C^1$, lo mismo a decir que $y'$ es continua en $I_M$)
+\end{enumerate}
+\end{minipage}}
+\subsection{Ecuaciones diferenciales de variables separables}
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Definición} Una ecuación diferencial $y'(x) = g(x,y)$ se dice que es de variables separabes es:
+\begin{equation*}
+    g(x,y) = M(x)N(y) \Rightarrow y'(x) =   M(x)N(y)
+\end{equation*}
+Tal que $N(y) \neq 0$
+\end{minipage}}
+
+La manera de resolver este tipo de ecauciones son como mostró en el ejemplo \textbf{[1.1]}.
+De manera general debemos de resolver la siguiente integral
+\begin{equation*}
+   \int \frac{1}{N(y)}dy = \int M(x) dx + x, c \in \mathbb{R}
+\end{equation*}
+
+\subsection{Ecuaciones diferenciales homogéneas}
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Definición} Una ecuación diferencial de primer orden $y'(x) = g(x,y)$ se dice que es  
+\textbf{homogénea} (de grado 0) cuando:
+\begin{equation*}
+   g(\lambda x, \lambda y) = \lambda^0 g(x,y) = g(x,y)
+\end{equation*}
+\end{minipage}}
+
+Para resolver este tipo de ecuaciones debemos de considerar que podemos escribir a $y$ como 
+$y(x) = v(x)  x$ para alguna función $v : \mathbb{R} \to \mathbb{R}$. Entonces
+\begin{equation*}
+   y' = g(x,y) = g(x, v(x) x) = g(1, v(x))
+\end{equation*}
+A su vez también sabemos que $y' = v'(x)x + v(x)$, considerando $v := v(x)$, se sigue:
+\begin{equation*}
+   g(1, v) = v'x + v \iff v'x =  g(1, v) - v  \iff  \frac{v'}{g(1, v) - v } = \frac{1}{x}  
+\end{equation*}
+Notemos que estas implicaciones son verdaderas sii $x \neq 0$ y $g(1,v) - v \neq 0$. 
+Finalmente se integran ambos lados para obtener $v(x)$, una vez teniendo dicha función sólo 
+bastaría multiplicar todo por $x$ para obtener la solución $y(x)$.
+
+
+\subsection{Ecuaciones diferenciales exactas}
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Definición} Un \textbf{campo vectorial} sobre un conjunto de $\mathbb{R}^n$ es una 
+función con valores vectoriales: $F : D \to \mathbb{R}^n$, se dice que $F$ es un campo vectorial $c^k$ 
+si como función es $k$ veces diferenciable con continuidad en $D$.
+\end{minipage}}
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Definición} Un campo vectorial $(c^k, F)$ sobre $D \subseteq \mathbb{R}^n$ se llama \textbf{campo gradiente}
+si existe una función $f : D \to \mathbb{R}$ en $c^{k+1}$ tal que 
+\begin{equation*}
+   F = \nabla f = \left( \frac{\partial f}{\partial x_1}, ... , \frac{\partial f}{\partial x_n} \right)
+\end{equation*}
+\end{minipage}}
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Definición} Se dice que ecuación diferencial de primer orden
+\begin{equation*}
+   M(x,y) + N(x,y) y' = 0
+\end{equation*}
+con $M,N : D \subseteq \mathbb{R}^2 \to \mathbb{R}$ es \textbf{diferencial exacta} siempre 
+que el campo vectorial $(M,N)$ sea un campo gradiente en $D$. En otras palabras que exista $\phi : D \to \mathbb{R}$
+tal que $\nabla \phi = (M, N)$.
+\end{minipage}}
+
+La importancia de la función $\phi$, tal que  $\nabla \phi = (M, N)$, es que para resolver $M(x,y) + N(x,y) y' = 0$
+podemos realizar la siguiente sustitución a la ecuación :
+\begin{equation*}
+    \frac{\partial\phi}{\partial x} + \frac{\partial \phi}{\partial y}y' = 0 \iff \frac{d}{ d x}[ \phi (x, y(x))] = 0 \iff \phi(x, y(x)) = k, k \in \mathbb{R}
+\end{equation*}
+
+Como la función $\phi$ es una constante, la solución implícita a una ecuación diferencial exacta es $\phi(x, y(x)) - k = 0$. El reto en resolver este tipo de 
+ecuaciones  radica en encontrar la función $\phi(x,y)$.
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{[1.3.1] Teorema} Sea $D$ un conjunto abierto y simplemente conexo y $M, N$ campos 
+escalares definidos en $D$ de clase $C^1$. Bajo estas condiciones $ M(x,y) + N(x,y) y' = 0$ es una ecuación 
+diferencial exacta en $D$ sii:
+\begin{equation*}
+   \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}, \forall (x,y) \in D \subseteq \mathbb{R}^2
+\end{equation*}
+\end{minipage}}
+
+Como podemos ver, para saber si una ecuación es diferencial exacta solo basta checar: 
+\begin{enumerate}[1., topsep=-2pt, itemsep=-2pt]
+\item Que $D$ sea simplemente conexo y acotoado
+\item $M, N \in C^1[D]$
+\item La igualdad de las derivadas parciales de $M,N$ que están en el teorema
+\end{enumerate}
+Una vez que ya verificamos los tres pasos, la metodología para resolver estás ecuaciones es bastante sencilla. Como ya 
+sabemos que la ecuación es diferencia exacata, entonces sabemos que $\exists \phi : \nabla \phi = (M, N)$. Por lo que 
+\begin{equation*}
+   \frac{\partial \phi}{\partial x} = M(x,y),  \quad \frac{\partial \phi}{\partial y} = N(x,y)
+\end{equation*}
+Si arbitrariamente integramos una derivada parcial, para este ejemplo usaré ${\partial \phi}/{\partial x}$, tendremos:
+\begin{equation*}
+   \phi(x,y) = \int M(x,y) dx + g(y)
+\end{equation*}
+Como se puede observar se tiene que encontrar el termino $g(y)$. Hay que tomar derivada parcial respecto a la otra variable
+, en este caso $y$; tendremos lo siguiente
+\begin{equation*}
+   \frac{\partial \phi}{\partial y} = \frac{\partial}{\partial y} \left[ \int M(x,y) dx \right] + g'(y) = N(x,y)
+\end{equation*}
+Entonces, para encontrar $\phi(x,y)$ hay que despejar $g'(y)$ e integrar. Una vez teniendo $\phi(x,y)$ como vimos anteriormente, 
+la solución implítica de la ecuación diferencial se verá: $\phi(x,y) = k, k \in \mathbb{R}$.
+\subsubsection{Factor integrante}
+Como vimos, si queremos resolver una ecuación diferencial de la forma $M(x,y) + N(x,y) y' = 0$, sólo 
+basta checar que se cumplan las condiciones del teorema [1.3.1]. Sin embargo, ¿qué pasaría si la única 
+condición que no se cumple es $\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$?
+La manera en la que podemos resolver este tipo de ecuaciones es agregando una función (conocida como el \textbf{factor integrante}) $\mu(x,y)$ tal que la ecuación
+\begin{equation*}
+   \mu(x,y) M(x,y) + \mu(x,y) N(x,y) y' = 0
+\end{equation*}
+sea diferencial exacta. 
+Para encontrar dicho factor se tiene que resolver la siguiente ecuación:
+\begin{equation*}
+   \frac{\partial}{\partial y} \left[\mu (x,y) M(x,y) \right] = \frac{\partial}{\partial x}[\mu (x,y) N(x,y) ]
+\end{equation*}
+Una vez obtenido $\mu(x,y)$, definimos $\hat{M}(x,y) := \mu(x,y) M(x,y) $ y $\hat{N}(x,y) := \mu(x,y) N(x,y) $. Para luego resolver
+la ecuación diferencial exacta: 
+\begin{equation*}
+   \hat{M}(x,y) + \hat{N}(x,y) y' = 0
+\end{equation*}
+Una forma de verificar que $\mu(x,y)$ es el factor integrante, es verificando que efectivamente la nueva ecuación es diferencial exacta.
+\subsection{Variación de las constantes}
+Sea la ecuación \textbf{[1.4.1]}:
+\begin{equation*}
+  P_1(x)y' + P_0(x)y = r(x)  
+\end{equation*}
+tal que $P_1, P_0 \text{ y } r$ son funciones continuas en un intervalo $D$ y $P_1(x) \neq 0$.
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Definición} La  \textbf{ecuación homogénea asociada} a [1.4.1] es la ecuación de variables separables es 
+$P_1(x)y' + P_0(x)y = 0$.
+\end{minipage}}
+
+La manera en la que vamos a resolver ecuaciones de la forma [1.4.1], será encontrando la solución general de su ecuación 
+homogénea asociada: 
+\begin{equation*}
+   y(x) = \exp{\left(- \int \frac{P_0(x)}{P_1(x)} dx\right)} \cdot k, \quad k \in \mathbb{R}_{\neq 0}
+\end{equation*}
+
+El siguiente pasó será suponer que la variable $k$ es una función que toma valores el en dominio $D$. Así pues, la solución tendrá la siguiente forma:
+\begin{equation*}
+   y(x) = \exp{\left(- \int \frac{P_0(x)}{P_1(x)} dx\right)} \cdot k(x), \quad k : D \to \mathbb{R}
+\end{equation*}
+
+Ahora sustituimos la solución en la ecuación [1.4.1] : 
+\begin{equation*}
+   P_1(x) \frac{d }{dx}\left[ E(x) k(x) \right]+ P_0(x) E(x) k(x) = r(x)
+\end{equation*}
+Donde $ E(x) := \exp\left(- \int \frac{P_0(x)}{P_1(x)} dx\right)$, simplificando el término se llegará a: 
+\begin{equation*}
+   P_1(x)e^{- \int{\frac{P_0(x)}{P_1(x)}} dx} k'(x) = r(x)
+\end{equation*}
+Luego despejamos $k'(x)$, obtenemos $k(x)$ (sin olvidar la constante de integración) para finalmente sustituir $k(x)$ en la solución.
+
+
+
+\textbf{Nota:} La intuición detrás del proceso de resolver este tipo de ecuaciones usando el método de la variación de las constantes,
+parte de la idea de que estamos buscando el espacio nulo (de funciones diferenciables) asociado a la transformación $[P_1(x), P_2(x)]$ para luego
+poder resolver la ecuación no homogénea.
+\subsection{Ecuación diferencial de Bernoulli}
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Definición} Se dice que una ecuación es diferencial de Bernoulli cuando:
+\begin{equation*}
+   y' + P(x)y = Q(x)y^{\alpha}, \quad Q,P : D \subseteq \mathbb{R} \to \mathbb{R}
+\end{equation*}
+\end{minipage}}
+
+Se puede observar que si $\alpha \in \{0,1\}$ entonces la solución de dicha ecuación será bastante sencilla considerando 
+que ya sabemos resolver una ecuación de variables separables (si $\alpha = 1$) y una ecuación lineal si ($\alpha = 0$). El 
+caso de nuestro interés será cuando: $\alpha \notin \{0,1\}$.
+
+Bajo dicho supuesto ($\alpha \notin \{0,1\}$), multipliquemos la ecuación diferencial de Bernoulli por $(1-\alpha)$ y $y^{-\alpha}$, se llegará a la siguiente ecuación:
+\begin{equation*}
+   (1 - \alpha) y' \cdot y^{-\alpha} + (1 - \alpha)P(x) \cdot y^{1-\alpha} = (1 - \alpha)Q(x)
+\end{equation*}
+Sea $z := y^{1-\alpha}$, entonces $z' = (1 - \alpha) y^{-\alpha} y'$, por lo que si ponemos la ecuación de arriba en términos de 
+$z$ llegamremos a:
+\begin{equation*}
+   z' + z(1 -\alpha)P(x) = (1 -\alpha)Q(x)
+\end{equation*}
+Podemos observar que esta ecuación se puede resolver usando el método de variación de constantes. Resolvemos dicha ecuación 
+para encontrar $z$, entonces para finalmente obtener $y$ de $y^{1-\alpha} = z$.
+\subsection{Ecuación diferencial de Ricati}
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Definición} Se dice que una ecuación es diferenical de Riccati cuando:
+\begin{equation*}
+   y' = P(x)y^2 +Q(x)y + R(x), \quad P,Q,R : D \subseteq \mathbb{R} \to \mathbb{R}
+\end{equation*}
+\end{minipage}}
+
+Si una soución de la ecuación diferencial de Riccati es conocida $y_0$. Podemos definir la solución general como: 
+\begin{equation*}
+   y(x) = y_0(x) + \frac{1}{z(x)} \Longrightarrow y'(x) = y'_0 - \frac{z'(x)}{z^2(x)}
+\end{equation*}
+Ahora si sustituimos la expresión de la solución general en la ecuación de Riccati, tendremos: 
+\begin{equation*}
+   y'_0(x)\frac{z'(x)}{z^2(x)} = P(x) \left(y_0(x) + \frac{1}{z(x)}\right)^2 + Q(x) \left(y_0(x) + \frac{1}{z(x)}\right) + R(x)
+\end{equation*}
+Desarrollando dicha expresión se llegará a: 
+\begin{equation*}
+   z' + z(2P(x) y_0+Q(x)) = -P(x)
+\end{equation*}
+Podemos apreciar que dicha ecuación se puede resolver usando el método de variación de las constantes para 
+encontrar $z$. Una vez teniendo $z$, lo sustituimos en la expresión de la solución general para la ecuación de Riccatti.
+\section{Ecuaciones lineales de segundo orden}
+Sea la siguiente una ecuación lineal de segundo orden:
+\begin{equation*}
+   P_2(x)y'' + P_1(x)y'+P_0(x)y = 0, \quad P_2, P_1, P_0 : D \subseteq \mathbb{R} \to \mathbb{R}
+\end{equation*}
+Siempre y cuando $P_2(x) \neq 0$. Ahora bien, no existe un método general para resolver este tipo de ecuaciones sólo hay 
+para casos particulares.
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Definición} El  \textbf{Wronskiano} de dos funciones $f, g$ e se define: 
+\begin{equation*}
+  W[f, g](x) = \det
+   \begin{bmatrix}
+      f(x) & g(x) \\ 
+      f'(x) & g(x)
+   \end{bmatrix}  = f(x)g'(x) + g(x)f'(x)
+\end{equation*}
+\end{minipage}}
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{[2.1] Teorema} Sean $y_1$ y $y_2$ soluciones de $P_2(x)y'' + P_1(x)y'+P_0(x)y = 0$, ${y_1, y_2}$ es 
+un conjunto linealmente independiente si
+\begin{equation*} 
+   W[y_1, y_2](x) \neq 0, \text{ para algún } x_0 \in D
+\end{equation*}
+\end{minipage}}
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{[2.2] Teorema} El Wronskiano verifica la igualdad de Abet
+\begin{equation*}
+   W(x) = W(x_0)\exp \left( {\int_{x_0}^{x}\frac{P_1(t)}{P_2(t)}dt} \right),\quad  x_0 \in D
+\end{equation*}
+\end{minipage}}
+
+
+
+\subsection{Solución particular de una ecuación homogénea}
+\subsection{Ecuación homogénea con coeficientes constantes}
+
+\section{Ecuaciones de Euler}
+
+\end{document}
