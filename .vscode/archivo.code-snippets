@@ -1,0 +1,230 @@
+{
+	// Place your Notas workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"Ecuación Línea" : {
+	"scope": "latex",
+	"prefix": "ecuacionl",
+	"body": "$$1$$0",
+	"description": "Ecuación"
+},  
+"Ecuación Parrafo" : {
+	"scope": "latex",
+	"prefix": "ecuacionp",
+	"body": ["\\begin{equation*}", 
+		"   $0",
+	"\\end{equation*}"],
+	"description": "Caja"
+}, 
+"Numeros Reales" : {
+	"scope": "latex",
+	"prefix": "reales",
+	"body": ["\\mathbb{R}"],
+	"description": "Números reales"
+},
+"Numeros Enteros" : {
+	"scope": "latex",
+	"prefix": "enteros",
+	"body": ["\\mathbb{z}"],
+	"description": "Números enteros"
+},
+"Matriz mxn" : {
+	"scope": "latex",
+	"prefix": "matriz mxn",
+	"body": ["\\mathbb{M}_{m\\times n}"],
+	"description": "Matriz mxn"
+},
+"VectorA" : {
+	"scope": "latex",
+	"prefix": "vectorA",
+	"body": ["\\vec{a}"],
+	"description": "Vector a"
+},
+"VectorB" : {
+	"scope": "latex",
+	"prefix": "vectorB",
+	"body": ["\\vec{b}"],
+	"description": "Vector b"
+},
+"Producto Punto" : {
+	"scope": "latex",
+	"prefix": "PP",
+	"body": ["\\cdot"],
+	"description": "Producto Punto"
+},
+"Matriz 2x2" : {
+	"scope": "latex",
+	"prefix": "matriz2x2",
+	"body": ["\\begin{bmatrix}",
+		"$1 & $2 \\\\\\",
+		"$3 & $4",
+		"\\end{bmatrix}"],
+	"description": "Matriz 2x2"
+},
+"Matriz 3x3" : {
+	"scope": "latex",
+	"prefix": "matriz3x3",
+	"body": ["\\begin{bmatrix}",
+	"$1 & $2 & $3 \\\\\\",
+	"$4 & $5 & $6  \\\\\\",
+	"$7 & $8 & $9",
+	"\\end{bmatrix}"],
+	"description": "Matrix 3x3"
+},
+"Matriz 3x3 Aumentada" : {
+	"scope": "latex",
+	"prefix": "matriz3x3",
+	"body": ["\\begin{bmatrix}[ccc|c]",
+	"$1 & $2 & $3 & $10 \\\\\\",
+	"$4 & $5 & $6 & $12 \\\\\\",
+	"$7 & $8 & $9 & $13 ",
+	"\\end{bmatrix}"],
+	"description": "Matrix 3x3"
+},
+"Implica" : {
+	"scope": "latex",
+	"prefix": "implica",
+	"body": ["\\Rightarrow"],
+	"description": "Implicación directa"
+},
+"Negritas" : {
+	"scope": "latex",
+	"prefix": "negritas",
+	"body": ["\\textbf{$1}"],
+	"description": "Resaltar texto"
+},
+"Espacio" : {
+	"scope": "latex",
+	"prefix": "Espacio",
+	"body": ["\\vspace*{0.5cm}"],
+	"description": "Espacio"
+},
+"Caja Texto" : {
+	"scope": "latex",
+	"prefix": "Caja texto",
+	"body": ["\\fbox{\\begin{minipage}{\\dimexpr\\textwidth-2\\fboxsep-2\\fboxrule\\relax}",
+			"\\paragraph{}:",
+			"\\end{minipage}}"],
+	"description": "Espacio"
+},
+"Conjunto" : {
+	"scope": "latex",
+	"prefix": "conjunto",
+	"body": ["\\{ $1 \\\\}"],
+	"description": "Conjunto sin elementos"
+},
+"Naturales" : {
+	"scope": "latex",
+	"prefix": "naturales",
+	"body": ["\\mathbb{N}"],
+	"description": "Números naturales"
+},
+"Probabilidad" : {
+	"scope": "latex",
+	"prefix": "proba",
+	"body": ["\\mathbb{P}($1)"],
+	"description": "Probabilidad de un evento"
+},
+"Condicionado" : {
+	"scope": "latex",
+	"prefix": "dado",
+	"body": ["|"],
+	"description": "condicionar con un evento"
+},
+"Parrafo " : {
+	"scope": "latex",
+	"prefix": "parrafo",
+	"body": ["\\paragraph{$1}\\mbox{}\\\\\\"],
+	"description": "crear un parrafo"
+},
+"Para todo " : {
+	"scope": "latex",
+	"prefix": "para todo",
+	"body": ["\\forall "],
+	"description": "símbolo para todo"
+},
+"en" : {
+	"scope": "latex",
+	"prefix": "esta en",
+	"body": ["\\in"],
+	"description": "símbolo está en"
+},
+"unión" : {
+	"scope": "latex",
+	"prefix": "union",
+	"body": ["\\cup"],
+	"description": "unión"
+},
+"intersección" : {
+	"scope": "latex",
+	"prefix": "interseccion",
+	"body": ["\\cap"],
+	"description": "intersección"
+},
+"Binomial" : {
+	"scope": "latex",
+	"prefix": "dist bin",
+	"body": ["\\text{Bin}(n,p)"],
+	"description": "Distribución binomial"
+},
+"Poisson" : {
+	"scope": "latex",
+	"prefix": "dist po",
+	"body": ["\\text{Po}(\\lambda)"],
+	"description": "Distribución poisson"
+},
+"Normal" : {
+	"scope": "latex",
+	"prefix": "dist nor",
+	"body": ["\\text{N}(\\mu \\sigma^2)"],
+	"description": "Distribución normal"
+},
+"Lista (letras)" : {
+	"scope": "latex",
+	"prefix": "lista letras",
+	"body": ["\\begin{enumerate}[a., topsep=0pt, itemsep=0cm]", 
+				"\\item ", 
+			"\\end{enumerate}"],
+	"description": "lista letras"
+},
+"Contenido en" : {
+	"scope": "latex",
+	"prefix": "contenido en",
+	"body": ["\\subseteq"],
+	"description": "contención"
+},
+"Espacio de Probabilidad" : {
+	"scope": "latex",
+	"prefix": "espacio proba",
+	"body": ["(\\Omega, \\mathcal{F}, \\mathbb{P})"],
+	"description": "espacio de probabilidad "
+},
+}
+
+
+   
+
+
+
+
+
+
+
+
+    
+    
+

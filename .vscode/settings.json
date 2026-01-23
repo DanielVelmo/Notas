@@ -1,0 +1,41 @@
+{
+    "super-figure.filesToWatch": [
+        "/Users/danielvelez/Documents/Notas/\\figuras\\propiedad_de_markov.svg",
+        "/Users/danielvelez/Documents/Notas/\\begin{figure}[ht]\n\t\t\\centering\n\t\t\\caption{}\n\t\t%\\incsvg{path/}{path/file}\n\t\t\\incsvg{Estocásticos/figuras}{Estocásticos/figuras/prueba}\n\t\t\\label{fig:prueba}\n\t\\end{figure}.svg",
+        "/Users/danielvelez/Documents/Notas/figuras/pepe.svg",
+        "/Users/danielvelez/Documents/Notas/Estocásticos/imagenes/prueba.svg",
+        "/Users/danielvelez/Documents/Notas/\\begin{figure}[ht]\n\t\t\\centering\n\t\t\\caption{}\n\t\t%\\incsvg{path/}{path/file}\n\t\t\\incsvg{Estocásticos/imagenes}{Estocásticos/imagenes/prueba}\\\\\n\t\t\\label{fig:prueba}\n\t\\end{figure}.svg",
+        "/Users/danielvelez/Documents/Notas/Estocásticos/images/proceso_poissoon_no_homogeneo.svg",
+        "/Users/danielvelez/Documents/Notas/Users/danielvelez/Documents/Notas/Estocásticos/images/proceso_compuesto.svg",
+        "/Users/danielvelez/Documents/Notas/Users/danielvelez/Documents/Notas/Estocásticos/images.svg",
+        "/Users/danielvelez/Documents/Notas/Estocásticos/images/proceso_compuesto.svg",
+        "/Users/danielvelez/Documents/Notas/CalculoII/imagenes/ejemplo_extremos_funciones_restricciones.svg",
+        "/Users/danielvelez/Documents/Notas/CalculoII/imagenes/demostracion_lagrange.svg",
+        "/Users/danielvelez/Documents/Notas/Estocásticos/images/cadena_markov_poisson.svg",
+        "/Users/danielvelez/Documents/Notas/Estocásticos/images/propiedad_markov_tiempo_continuo.svg",
+        "/Users/danielvelez/Documents/Notas/Estocásticos/images/propiedad1_proceso_poisson.svg",
+        "/Users/danielvelez/Documents/Notas/imagenes\\tipoI.svg",
+        "/Users/danielvelez/Documents/Notas/CalculoII/imagenes/region_tipoI.svg",
+        "/Users/danielvelez/Documents/Notas/CalculoII/imagenes/region_tipoII.svg",
+        "/Users/danielvelez/Documents/Notas/CalculoII/imagenes/cambio_de_variable.svg",
+        "/Users/danielvelez/Documents/Notas Raw/\\imagenes\\prueba.svg",
+        "/Users/danielvelez/Documents/Notas Raw/imagenes\\prueba.svg",
+        "/Users/danielvelez/Documents/Notas Raw/CalculoIII/imagenes/prueba.svg"
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-shell-escape",              // <---- added this line
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+    ]
+}
