@@ -1,0 +1,19 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Los números reales}{3}{}%
+\contentsline {subsection}{\numberline {1.1}Conjuntos finitos, conjuntos numerables y no-numerables}{3}{}%
+\contentsline {paragraph}{Def}{3}{}%
+\contentsline {paragraph}{Def}{3}{}%
+\contentsline {paragraph}{Definición}{4}{}%
+\contentsline {paragraph}{Definición}{4}{}%
+\contentsline {paragraph}{Definición}{4}{}%
+\contentsline {subsection}{\numberline {1.2}Conjuntos equivalentes (cardinalidad). No-numerabilidad de (0, 1)}{5}{}%
+\contentsline {paragraph}{Definición}{5}{}%
+\contentsline {subsection}{\numberline {1.3}El campo ordenado de los números reales}{6}{}%
+\contentsline {subsection}{\numberline {1.4}Axioma del supremo y propiedad arquimediana}{6}{}%
+\contentsline {subsection}{\numberline {1.5}Densidad de diversos subconjuntos de $\mathbb {R}$}{6}{}%
+\contentsline {subsection}{\numberline {1.6}Principio de intervalos anidados}{6}{}%
+\contentsline {subsection}{\numberline {1.7}Conjunto de Cantor}{6}{}%
+\contentsline {section}{\numberline {2}Topología en $\mathbb {R}^n$ y en espacios métricos}{6}{}%
+\contentsline {subsection}{\numberline {2.1}El espacio cartesiano $\mathbb {R}^n$}{6}{}%
+\contentsline {subsection}{\numberline {2.2}Normas y nociones topológicas en $\mathbb {R}^n$}{6}{}%
+\contentsline {subsection}{\numberline {2.3}Principio de las celdas anidadas en $\mathbb {R}^n$ y teorema de Bolzano-Weierstrass}{6}{}%

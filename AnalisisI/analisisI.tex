@@ -1,0 +1,189 @@
+\documentclass[11pt]{article}
+% Paquetes
+\usepackage{amssymb}
+\usepackage{amsmath,lipsum}
+\usepackage[most]{tcolorbox}
+\usepackage{setspace}
+\usepackage{svg}
+\usepackage{ifluatex}
+\usepackage[spanish]{babel}
+\usepackage[shortlabels]{enumitem}
+\usepackage[margin=3cm]{geometry}
+\usepackage{mathtools}  
+\usepackage{mathrsfs} 
+
+
+\ifluatex
+  \usepackage{pdftexcmds}
+  \makeatletter
+  \let\pdfstrcmp\pdf@strcmp
+  \let\pdffilemoddate\pdf@filemoddate
+  \makeatother
+\fi
+
+\newcommand{\incsvg}{\includesvg}
+%% Ajustes del documento
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+\setlength{\fboxsep}{1em}
+\renewcommand{\baselinestretch}{1.2} 
+\title{Análisis I}
+\author{Basado en las lecturas de César Luis García García \\
+    Notas tomadas por Daniel Vélez Moyado}
+\date{Primavera 2026}
+
+\begin{document}
+\maketitle 
+\pagebreak
+\begin{spacing}{0}
+\tableofcontents
+\end{spacing}
+\pagebreak
+
+\section{Los números reales}
+\subsection{Conjuntos finitos, conjuntos numerables y no-numerables}
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Def} Un conjunto es una colección de objetos (llamados elementos del conjunto) definidos por alguna propiedad. 
+
+\textbf{Observación}: Denotamos a los conjuntos con letras mayúsculas, podmos denotar un conjunto como 
+\begin{equation*}
+   A = \{ a,b,c \} \quad \mathbb{N} = \{ 1,2,3,4,5, ... \}
+\end{equation*}
+\end{minipage}}
+
+- Si $P$ es una propiedad: $\{x | P(x) \}$ se lee: ''el conjunto de elementos $x$ tales que 
+$P(x)$ es verdadera''
+
+- Si tenemos algún conjunto de referencia $U$: $\{ x \in U | P(x) \}$ \\
+- Existe un conjunto sin elementos llamado el conjunto vació: $\emptyset$ \\
+- Si $A$ es un conjunto y $a$ es un elmento de $A$ lo denotamos $a \in A$ \\ 
+- Relación de contención entre conjuntos: \\ 
+    Si $A$ y $B$ son conjuntos, diremos que $A$ es subconjunto de $B$, denotando $A \subset B$ si 
+    $\forall x, x \in A \Rightarrow x \in B$. \\
+- Dos conjuntos son iguales si $A \subset B$ y $B \subset A$
+
+\textbf{Conjunto potencia:} Si $A$ es un conjunto, se denotá $\mathcal{P}(A)$ al conjunto cuyos elementos son 
+elementos son subconjunto de A. 
+\begin{equation*}
+   \mathcal{P}(A) = \{ B | B \subset A \}
+\end{equation*}
+
+\textbf{Observación}: Se puede demostrar que $\mathcal{P}(A)$ tiene $2^{|A|}$ elementos. Usando  una función $\mathscr{F}$, 
+tal que e
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Def} Si $A,B$ son conjuntos \\
+-  Unión de $A$ y $B$ : $A \cup B = \{ x | x \in A \text{ ó } x \in B\}$ \\
+- Intersección de $A$ y $B$ : $A \cap B = \{ x | x \in A \text{ y } x \in B\}$ \\
+- Complemento relativo de $B$ : $A|B = \{ x | x \in A\text{ y } x \notin B \}$
+\end{minipage}}
+
+\textbf{Conjunto vació:} Es un conjunto que carece de elementos, lo denotamos como $\emptyset$, este conjunto es único.
+Ya que si suponemos otro conjunto vació $\emptyset^{*}$ tendríamos $\emptyset^{*} \subset \emptyset$ 
+y $\emptyset \subset \emptyset^{*}$, por lo tanto son iguales. Además se sostiene $\mathcal{P}(\emptyset) = \{ \emptyset \}$.
+
+
+\textbf{Producto cartesiano:} Si $A, B$ son subconjuntos de algún conjunto $X$, el producto cartesiano de $A$ con $B$ es:
+\begin{equation*}
+   A \times B = \{ \{  \{ a \}, \{ a,b \} \} \quad | \quad a \in A, b \in B \}
+\end{equation*}
+De este producto podemos observar que $\{ a \} \in \mathcal{P}(X)$ y $\{ a, b \} \in \mathcal{P}(X)$ por lo que
+$ \{ \{ a \}, \{ a,b \} \} \in \mathcal{P}(\mathcal{P}(X))$. Está notación es la manera conjuntista de observar dicho producto, 
+solemos simplificar este producto así $(a,b) \in A \times B$. 
+
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Definición} Considerar $A,B$ conjuntos no vacíos, una función $f : A \to B$
+es un subconjunto de $A \times B$ que cumple : 
+\begin{enumerate}[a., topsep=0pt, itemsep=0cm]
+\item $\forall a \in A, \exists B$ tal que $(a,b) \in f$
+\item Si $(a,b) \in f$ y $(a, b') \in f \Rightarrow b = b'$
+\end{enumerate}
+\textbf{Nota:} Si $a \in A$ y $(a,b) \in f$, denotamos $b$ como $f(a)$.
+\end{minipage}}
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Definición} Si $A, B$ son conjuntos no vacios y sea la función $f : A \to B$
+\begin{enumerate}[a., topsep=0pt, itemsep=0cm]
+\item Si $C \subset A, C \neq \emptyset$, la imagen bajo $f$ de $C$ es un subconjunto
+de $B$ dado por
+\begin{equation*}
+   f(C) = \{ f(a) | a \in C \} \subset B
+\end{equation*}
+\item Si $D \subset B, B \neq \emptyset$ la imagen inversa de $D$ bajo $f$ es el 
+subconjunto de $A$ dado por
+\begin{equation*}
+   [f \in D] = f^{-1}(D) := \{ a \in A | f(a) \in D \}
+\end{equation*}
+\end{enumerate}
+\end{minipage}}
+
+Si $f : A \to B$ es una función, $A_1, A_2$ son subconjuntos no vaciós de $A$ y definimos 
+$B_1 = f(A_1), B_2 = f(A_2)$, observamos los siguientes casos
+\begin{enumerate}[1., topsep=0pt, itemsep=0cm]
+\item $f(A_1 \cup A_2) = f(A_1) \cup f(A_2)$
+\item $f(A_1 \cap A_2) \subset f(A_1) \cap f(A_2)$
+\item $[f \in B_1 \cup B_2] = [f \in B_1] \cup [f \in B_2]$ 
+\item $[f \in B_1 \cap B_2] = [f \in B_1] \cap [f \in B_2] $ 
+\end{enumerate}
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Definición} Sea una relación $f : A \to B$, dicha relación $f$ es una función:
+\begin{enumerate}[1., topsep=0pt, itemsep=0cm]
+\item $f$ es inyectiva sii $\forall b \in B$, $[f \in \{b \}]$ tiene a lo más un elemento
+\item $f$ es suprayectiva sii $\forall b \in B, [f \in \{ b\}] \neq \emptyset$ \\ 
+En otras palabaras $f(A) = B$
+\end{enumerate}
+\end{minipage}}
+
+
+
+
+\subsection{Conjuntos equivalentes (cardinalidad). No-numerabilidad de (0, 1)}
+
+\fbox{\begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\paragraph{Definición} Si $A$ y $B$ son conjuntos diremos que $A$ y $B$ son \textbf{equivalentes}
+($A \sim B$) si existe una función biyectiva entre ellas.
+\end{minipage}}
+
+\textbf{Observación:} $\sim$ es una relación de equivalencia en la clase de los conjuntos
+
+La clase de equivalencia se etiqueta con lo que se llama el \textbf{cardinal} de
+los conjuntos en la clase y se denota $\#(A)$ o $|A|$.
+
+\textbf{Proposición}: Si $A$ es un conjunto y $g : A \to \mathcal{P}(A)$ 
+es una función inyectiva y no sobreyectiva. Por lo que $\#(A) \leq \#(\mathcal{P}(A))$.
+
+Sea $A$ un conjunto, decimos que $A$ es \textbf{contable} sii $A$ es finito o $A$ es numerable.
+En otras palabras que $A \sim \mathbb{N}$.
+
+\textbf{Observación:} 
+\begin{enumerate}[1, topsep=0pt, itemsep=-2pt]
+\item $A$ es contable y $B \subseteq A$ entonces $B$ es contable.
+\item Si $A$ es infinito entonces $A$ contiene algún subconjunto numerable
+\item Para un conjunto $A$ infinito, las siguientes son equivalentes: 
+\begin{enumerate}[a., topsep=0pt, itemsep=0cm]
+\item $A$ es numerable
+\item $\exists \phi : A \to \mathbb{N}$ inyectiva
+\item $\exists \psi : \mathbb{N} \to A$ sobreyectiva
+\end{enumerate}
+\item Si $\mathcal{Q}$ es una colección numerable de conjutnos numerabales
+digamos que $\mathcal{Q} = \{ A_1, A_2, ... \}$ entonces
+\begin{equation*}
+   \bigcup_{n=1}^{\infty}A_n \text{ es un conjunto numerable}
+\end{equation*}
+\end{enumerate}
+
+
+
+\subsection{El campo ordenado de los números reales}
+\subsection{Axioma del supremo y propiedad arquimediana}
+\subsection{Densidad de diversos subconjuntos de $\mathbb{R}$}
+\subsection{Principio de intervalos anidados}
+\subsection{Conjunto de Cantor}
+\section{Topología en $\mathbb{R}^n$ y en espacios métricos}
+\subsection{El espacio cartesiano $\mathbb{R}^n$}
+\subsection{Normas y nociones topológicas en $\mathbb{R}^n$}
+\subsection{Principio de las celdas anidadas en $\mathbb{R}^n$ y teorema de Bolzano-Weierstrass}
+
+\end{document}
